@@ -1,0 +1,15 @@
+1. screen recording for file upload on ticket.
+2) Debug why this person has not received the shipment OTP - 
+
+ Ticket #8536802855
+Delivery code not received by customer- B2C shipments
+
+
+15151910129754
+this package was applied with wrong NSL and is - directly moved to RT pending from UD pending
+
+
+
+correct error code for partial delhivery packages. 
+-  Ticket #4264896593
+UNABLE TO ADD SHIPMENT IN RETURN DISPATCH

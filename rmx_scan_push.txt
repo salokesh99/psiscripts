@@ -1,0 +1,10 @@
+
+Step1- Make a list of waybills as wbns in HQ prod
+
+Step2- Run this script- https://github.com/delhivery/product-integration/blob/aramex_scan_repush/scan_repush/aramex.py
+
+Step3-Type- main(wbns)
+
+Step4-Copy all the responses if waybills are less or copy a sample response to attach in the mail.
+
+Step5- Drop a reply on the mail with response log file

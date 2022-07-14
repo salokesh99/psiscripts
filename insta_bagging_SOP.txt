@@ -1,0 +1,74 @@
+1)Download the zip file and a csv file from the ticket.
+2) unzip and keep it on a easily accessible folder. like desktop.
+3) Upload bag matrix unzipped files in csv format to path- 
+** pls seek help from others.
+  --S3 Bucket - auto-configs-prod  Path - express/app-data/BagMatrix/
+
+Upload the indvidual unzipped files. 
+
+
+4) Then run this on HQ shell/Prod
+
++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+%cpaste
+kwargs = {
+    "bucket": "auto-configs-prod",
+    "path": "express/app-data/BagMatrix/",
+    "emails": ["config_updates@delhivery.com", "Network-Engg@delhivery.com","shubham.sharma9@delhivery.com","devops@delhivery.com"]
+}
+
+from bag.tasks import update_bag_matrix_from_s3
+update_bag_matrix_from_s3(**kwargs)
+--
+
+
++++++++++++++++++++++++++++++++++++++++++
+
+5) check your mails for the success/failure reports from noreply.
+
+6) Go to path- "express/app-data/BagMatrixOptimize/add_instabagging_stations/" and create a folder of a new date with format - /ad=YYYY-MM-DD/
+
+7) Now upload instabagging station list to path- express/app-data/BagMatrixOptimize/add_instabagging_stations/ad=***YOUR_DATE_FOLDER***/***your_Folder_To_Update.csv***"
+
+it would look something like - "express/app-data/BagMatrixOptimize/add_instabagging_stations/ad=2021-12-07/Instabagging_station_list_fedex.csv"
+
+8) upload your .CSV file in that folder.
+
+9) Now hit this API.  Change the bearer token. or ask others if yours is giving unauthorized error.
+
+
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ ```curl --location --request POST 'https://hq.delhivery.com/api/rest/network/update/' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im11a3RpLmRhcyIsInBob25lX251bWJlciI6Iis5MTc5NzgwNDE2ODYiLCJmaXJzdF9uYW1lIjoiTXVrdGkiLCJsYXN0X25hbWUiOiJEYXMiLCJhdWQiOiIuZGVsaGl2ZXJ5LmNvbSIsInBpbiI6ZmFsc2UsImRhcndpbl9maWQiOiJJTjEyMjAwMkExSyIsInVzZXJfdHlwZSI6Ik9SIiwid3JpdGVfYWxsX2NlbnRlcnMiOnRydWUsInJlYWRfYWxsX2NlbnRlcnMiOnRydWUsImlkbGUiOjE2Mzg1OTIyNTQsInRlbmFudCI6IkRlbGhpdmVyeSIsImV4cCI6MTYzODE2Mzg1NCwidG9rZW5faWQiOiJhODgxNGMyZC00MTY0LTQ1MzktOTQwMy0yYjY3ZmQxNWY3MzQiLCJpYXQiOjE2Mzc5ODc0NTQsImVtYWlsIjoibXVrdGkuZGFzQGRlbGhpdmVyeS5jb20iLCJhcGlfdmVyc2lvbiI6InYxIiwic3ViIjoidW1zOjp1c2VyOjoxZjUyNTM5Yy1iOTFiLTExZWItOWNlNS0wMjhjZjZmZGEzMjgifQ.wd9WI-U6GD1wQRTOHAYKzjYY4MkV5rJAF3ft-6RDbgo' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: sessionid=x3m85m7l9mzc2bss7bryklw3nad2dycx' \
+--data-raw '{
+  "action": "add_instabagging_stations",
+  "key": "express/app-data/BagMatrixOptimize/add_instabagging_stations/ad=2021-11-27/kolkata_RPC_instabagging_station_list.csv"
+}'
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+9) in the response which looks something like this - pick the UPL number from the response.
+
+
+**********************************************
+
+
+{
+    "upload_log": "UPL7502672386811695596",
+    "success": true,
+    "error": ""
+}
+
+*********************************************
+
+
+ 10) check upl status on - https://hq.delhivery.com/cmu/show_bulk/**your UPL ID**/
+
+ 11) If you see success on this URL, its a success.
+
+12) share the UPL on the ticket and mail if any.

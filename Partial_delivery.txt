@@ -1,0 +1,43 @@
+In [1]: from packages.models import *
+
+In [2]: p= Package.objects.get(waybill=13849210586935)
+
+In [3]:
+
+In [3]: wns=[u'15003610006694', u'15003610006705', u'15003610006716', u'15003610006720']
+
+In [4]: for i in wns:
+   ...:     p= Package.objects.get(waybill=i)
+   ...:     print i ,p.partial_delivery
+   ...:
+15003610006694 False
+15003610006705 False
+15003610006716 False
+15003610006720 True
+
+In [5]: for i in wns:
+   ...:     p= Package.objects.get(waybill=i)
+   ...:     p.partial_delivery=True
+   ...:     p.save()
+   ...:
+   ...:
+
+In [6]: for i in wns:
+   ...:     p= Package.objects.get(waybill=i)
+   ...:     print i ,p.partial_delivery
+   ...:
+15003610006694 True
+15003610006705 True
+15003610006716 True
+15003610006720 True
+
+In [7]:
+
+In [7]: p= Package.objects.get(waybill=15003610006683)
+
+In [8]: p.partial_delivery
+Out[8]: False
+
+In [9]: p.partial_delivery=True
+
+In [10]: p.save()

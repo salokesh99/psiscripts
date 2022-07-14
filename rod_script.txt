@@ -1,0 +1,47 @@
+ROD - 
+steps - 
+
+1) check with this query on redash if the file exists 
+ - https://reporting.delhivery.com/queries/59493/source#table
+
+2) Paste Order ID - 
+ 
+ Select * from "express_dwh"."pq_dbz_football_parquet" where ref_id='##order_id'
+
+ 3) if ROD doesn't exist, inform them to repush it. 
+
+ Else - 
+
+ if there is data on redash table - 
+
+ 4) on dynamo DB go to DMS-prod table 
+
+ - if not there - put this scan- 
+
+ print p.add_status(datetime.datetime.now(),p.cs.sl,'As Requested','Pending','lokesh.k4', st='UD',nsl_code=u'X-IBD3F')
+
+
+
+ 5) paste the wbn and check if the s3 bucket is - sorter image...
+
+ if football delfi not available, then proceed...
+
+
+ 6) if yes, run - this on HQ shell.
+
+ "
+ 
+ print p.add_status(datetime.datetime.now(),p.cs.sl,'As Requested','Pending','lokesh.k4', st='UD',nsl_code=u'X-IBD3F') 
+
+ "
+
+7) check if there is a new entry on dynamo DB list. 
+
+
+
+
+
+
+# ROD nsl_code
+p.add_status(datetime.datetime.now(),p.cs.sl,'As Requested By Ops','Pending', 'lokesh.k4', st=u'UD',nsl_code='X-IBD3F')
+
